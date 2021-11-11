@@ -15,8 +15,10 @@ namespace SportingGoodsStore.Controllers
                 string name = p?.Name ?? "<No Name>";
                 decimal? price = p?.Price ?? 0;
                 string relatedName = p?.Related?.Name ?? "<None>";
+                string category = p?.Category ?? "<None>";
+                bool inStock = p?.InStock ?? true;
 
-                results.Add(string.Format($"Name: {name}, Price: {price}, Related: {relatedName}"));
+                results.Add(string.Format($"Name: {name}, Price: {price}, Related: {relatedName}, Category: {category}, InStock: {inStock}"));
             }
             return View(results);
         }
