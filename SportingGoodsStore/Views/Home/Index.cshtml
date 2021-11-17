@@ -1,18 +1,10 @@
-﻿@model IEnumerable<string>
+﻿@model IQueryable<Product>
 
-@{ Layout = null; }
-
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width"/>
-        <title>Language Features</title>
-    </head>
-    <body>
-        <ul>
-            @foreach (string s in Model)
-             {
-                <li>@s</li>
-             }
-        </ul>
-    </body>
-</html>
+@foreach (var p in Model)
+{
+    <div>
+        <h3>@p.Name</h3>
+        @p.Description
+        <h4>@p.Price.ToString("c")</h4>
+    </div>
+}

@@ -1,39 +1,20 @@
-﻿namespace SportingGoodsStore.Models
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SportingGoodsStore.Models
 {
     public class Product
     {
+        public long ProductId { get; set; }
+
         public string Name { get; set; }
 
-        public string Category { get; set; } = "WaterSports";
+        public string Description { get; set; }
 
-        public decimal? Price { get; set; }
+        [Column(TypeName = "decimal(8, 2)")] 
+        public decimal Price { get; set; }
 
-        public Product Related { get; set; }
+        public string Category { get; set; }
 
-        public bool InStock { get; }
-
-        public Product(bool stock = true)
-        {
-            InStock = stock;
-        }
-
-        public static Product[] GetProducts()
-        {
-            Product kayak = new Product
-            {
-                Name = "Kayak",
-                Category = "Water craft",
-                Price = 275M
-            };
-            Product lifejacket = new Product(false)
-            {
-                Name = "Lifejacket",
-                Price = 48.95M
-            };
-
-            kayak.Related = lifejacket;
-
-            return new Product[] {kayak, lifejacket, null};
-        }
     }
 }

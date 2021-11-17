@@ -1,26 +1,22 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using SportingGoodsStore.EF;
 using SportingGoodsStore.Models;
 
 namespace SportingGoodsStore.Controllers
 {
     public class HomeController : Controller
     {
-        public ViewResult Index()
+        private readonly IStoreRepository _repository;
+
+        public HomeController(IStoreRepository repository)
         {
-            List<string> results = new List<string>();
+            _repository = repository;
+        }
 
-            foreach (Product p in Product.GetProducts())
-            {
-                string name = p?.Name ?? "<No Name>";
-                decimal? price = p?.Price ?? 0;
-                string relatedName = p?.Related?.Name ?? "<None>";
-                string category = p?.Category ?? "<None>";
-                bool inStock = p?.InStock ?? true;
-
-                results.Add(string.Format($"Name: {name}, Price: {price}, Related: {relatedName}, Category: {category}, InStock: {inStock}"));
-            }
-            return View(results);
+        public IActionResult Index()
+        {
+            return View(_repository.Products);
         }
     }
 }
