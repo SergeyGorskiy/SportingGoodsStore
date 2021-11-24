@@ -25,6 +25,7 @@ namespace SportingGoodsStore
                 opts.UseSqlServer(Configuration["ConnectionStrings:SportingGoodsStoreConnection"]);
             });
             services.AddScoped<IStoreRepository, StoreRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddRazorPages();
             services.AddDistributedMemoryCache();
             services.AddSession();
