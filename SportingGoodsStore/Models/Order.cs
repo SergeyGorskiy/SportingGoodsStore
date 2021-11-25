@@ -6,9 +6,11 @@ namespace SportingGoodsStore.Models
 {
     public class Order
     {
-        [BindNever] public int OrderId { get; set; }
+        [BindNever] 
+        public int OrderId { get; set; }
 
-        [BindNever] public ICollection<CartLine> Lines { get; set; }
+        [BindNever]
+        public ICollection<CartLine>? Lines { get; set; }
 
         [Required(ErrorMessage = "Please enter a name")]
         public string Name { get; set; }
@@ -28,5 +30,8 @@ namespace SportingGoodsStore.Models
         [Required(ErrorMessage = "Please enter a country name")]
         public string Country { get; set; }
         public bool GiftWrap { get; set; }
+
+        [BindNever] 
+        public bool Shipped { get; set; }
     }
 }

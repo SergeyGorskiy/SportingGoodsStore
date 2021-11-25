@@ -1,5 +1,4 @@
-﻿using System.Reflection.Metadata;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 
 namespace SportingGoodsStore.Infrastructure
