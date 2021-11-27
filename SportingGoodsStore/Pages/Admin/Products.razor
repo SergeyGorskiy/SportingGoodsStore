@@ -12,8 +12,14 @@
         ProductData = await Repository.Products.ToListAsync();
     }
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
+        await UpdateData();
+    }
+
+    public async Task DeleteProduct(Product product)
+    {
+        Repository.DeleteProduct(product);
         await UpdateData();
     }
 
@@ -44,6 +50,7 @@
                     <td>
                         <NavLink class="btn btn-info btn-sm" href="@GetDetailsUrl(p.ProductId)">Details</NavLink>
                         <NavLink class="btn btn-warning btn-sm" href="@GetEditUrl(p.ProductId)">Edit</NavLink>
+                        <button class="btn btn-danger btn-sm" @onclick="@(e => DeleteProduct(p))">Delete</button>
                     </td>
                 </tr>
              }
